@@ -16,6 +16,7 @@ const UserForm = () => {
     country: '',
     pinCode: '',
   });
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
