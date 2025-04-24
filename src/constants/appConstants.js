@@ -1,6 +1,5 @@
-export const API_BASE_URL =
-  'https://asheef-microservices-architecture.asheef.repl.co/api/v1/users';
+export const API_BASE_URL = 'http://localhost:8081/api/v1/users';
 
-// export const FORM_LIMITS = {
-//   MAX_EDUCATION_ENTRIES: 4,
-// };
+export const ERROR_MESSAGES = {
+  FAILED_TO_CREATE: 'Failed to create user. Please try again.',
+};
