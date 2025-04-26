@@ -26,3 +26,25 @@ export const getCountries = async () => {
   return await response.json();
 };
 
+export const getStates = async (countryIsoCode) => {
+  const response = await fetch(`${API_BASE_URL}/states?type=STATE&countryCode=${countryIsoCode}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch states');
+  }
+  return await response.json();
+}
+
+
+export const getCities = async (stateIsoCode) => {
+  const response = await fetch(`${API_BASE_URL}/cities?type=CITY&stateIsoCode=${stateIsoCode}`, {
+    method: 'GET',
+    headers: { 'Content-Type': 'application/json' },
+  });
+  if (!response.ok) {
+    throw new Error('Failed to fetch cities');
+  }
+  return await response.json();
+};

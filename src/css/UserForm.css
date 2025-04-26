@@ -1,5 +1,7 @@
 /* Form Container */
 .form-container {
+    display: flex;
+    justify-content: center;
     max-width: 800px;
     margin: 50px auto;
     padding: 20px;
