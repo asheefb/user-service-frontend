@@ -21,8 +21,6 @@ const UserForm = () => {
     pinCode: '',
   });
 
-
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -34,23 +32,6 @@ const UserForm = () => {
   const [countryData, setCountryData] = useState([]); 
   const [stateData, setStateData] = useState([]);
   const [cityData, setCityData] = useState([]);
-
-  const [countryFetched, setCountryFetched] = useState(false);
-  const [stateFetched, setStateFetched] = useState(false);
-  
-  // useEffect(() => {
-  //   const fetchCountries = async () => {
-  //     try {
-  //       const fetchedCountries = await getCountries();
-  //       setCountryData(fetchedCountries);
-  //     } catch (error) {
-  //       alert('Failed to fetch countries.');
-  //     }
-  //   };
-  
-  //   fetchCountries();
-  // }, []);
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -94,7 +75,7 @@ const UserForm = () => {
       try {
 
         const selectedCountry = countryData.find(
-          (country) => country.countryName === formData.country
+          (country) => country.id === formData.country
         );
         if (!selectedCountry) {
          alert('Please select a country first.');
@@ -127,7 +108,7 @@ const UserForm = () => {
       setLoadingCities(true);
       try {
         const selectedState = stateData.find(
-          (state) => state.stateName === formData.state
+          (state) => state.id ===  formData.state
         );
         if (!selectedState) {
           alert('Please select a state first.');
@@ -157,20 +138,20 @@ const UserForm = () => {
 
     if (key === 'gender') {
       return (
-        <div>
+        <div className="gender-group">
           <label>
-            <input type="radio" name='gender' value="Male" checked={formData.gender ==='Male'} onChange={handleChange}/> Male
+            <input type="radio" name="gender" value="Male" checked={formData.gender === 'Male'} onChange={handleChange} /> Male
           </label>
           <label>
-            <input type="radio" name='gender' value="Female" checked={formData.gender ==='Female'} onChange={handleChange}/> Female
+            <input type="radio" name="gender" value="Female" checked={formData.gender === 'Female'} onChange={handleChange} /> Female
           </label>
           <label>
-            <input type="radio" name='gender' value="other" checked={formData.gender ==='other'} onChange={handleChange}/> 
+            <input type="radio" name="gender" value="Other" checked={formData.gender === 'Other'} onChange={handleChange} /> Other
           </label>
-
         </div>
-      )
+      );
     }
+    
 
     if (key === 'country') {
       return (
@@ -184,7 +165,7 @@ const UserForm = () => {
         >
           <option value="">Select Country</option>
           {countryData.map((country) => (
-            <option key={country.id} value={country.countryName}>
+            <option key={country.id} value={country.id}>
               {country.countryName}
             </option>
           ))}
@@ -197,7 +178,7 @@ const UserForm = () => {
         <select name="state" id="state" value={formData.state} onChange={handleChange} onFocus={handleStateFocus} required>
           <option value="">Select State</option>
           {stateData.map((state) => (
-            <option key={state.id} value={state.stateName}>{state.stateName}</option>
+            <option key={state.id} value={state.id}>{state.stateName}</option>
           ))}
         </select>
       );
@@ -208,7 +189,7 @@ const UserForm = () => {
         <select name="city" id="city" value={formData.city} onChange={handleChange} onFocus={handleCityFocus} required>
           <option value="">Select City</option>
           {cityData.map((city) => (
-            <option key={city.id} value={city.cityName}>{city.cityName}</option>
+            <option key={city.id} value={city.id}>{city.cityName}</option>
           ))}
         </select>
       );
